@@ -1,0 +1,13 @@
+- hosts: web01
+  become: yes
+  tasks:
+
+    - name: Update 
+      apt: update_cache=yes
+
+    - name: Install nginx
+      apt: name=nginx state=latest
+    
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=reloaded
